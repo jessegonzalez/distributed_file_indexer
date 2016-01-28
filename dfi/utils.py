@@ -8,5 +8,5 @@ def tokenize(input=None):
     return filter(None, tokens)
 
 def counter(input=None):
-    tokens = re.findall(r'\w+', input.lower())
+    tokens = tokenize(input)
     return Counter(tokens)

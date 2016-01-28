@@ -9,9 +9,6 @@ def teardown():
     pass
 
 @with_setup(setup, teardown)
-def test_foo():
-    assert True
-
 def test_tokenize():
     input1 = ' one   two three four five '
     input2 = 'one:two:three:four:five'
@@ -25,6 +22,7 @@ def test_tokenize():
     assert utils.tokenize(input4) == ['one', 'two', 'three', 'four', 'five']
     assert utils.tokenize(input5) == ['don', 't', 'can', 't', 'won', 't']
 
+@with_setup(setup, teardown)
 def test_counter():
     input1 = "one one two three one"
     input2 = 'don\'t can\'t won\'t?'
