@@ -124,7 +124,7 @@ From here we have a few options. We'll start by running one container of each as
 $ docker-compose up
 ```
 
-I've intentionally disabled logging for all containers except for the coordinator. This will keep the redis and rqworker logs from flooding the screen. The output would look simlar to the following. Control will not return to the shell, you will need to <Ctrl>+C to regain control:
+I've intentionally disabled logging for all containers except for the coordinator. This will keep the redis and rqworker logs from flooding the screen. The output would look simlar to the following. Control will not return to the shell, you will need to Ctrl+C to regain control:
 
 ```
 Starting dfi_redis_1
@@ -174,7 +174,7 @@ c5adaf34c636        dfi_rqworker         "/app/bin/rqworker --"   3 minutes ago 
 1f6677883e5f        redis                "/entrypoint.sh redis"   3 minutes ago       Up 3 minutes               0.0.0.0:6379->6379/tcp   dfi_redis_1
 ```
 
-We see the docker container named dfi_rq_coordinator_1 has exites, so we can view that containers logs:
+We see the docker container named dfi_rq_coordinator_1 has exiter, so we  view that containers logs with _docker logs_:
 
 ```
 $ docker logs dfi_rq_coordinator_1
@@ -190,7 +190,7 @@ his: 559
 in: 520
 ```
 
-With redis and our 3 workers still running, we can still submit more _input.txt_ files for processing. Back in a terminal with the dfi virtualenv activated, we specify the REDIS_HOST environment variable to submit jobs to the containerized redis. A sample run follows for the file [Project Gutenberg's The Adventures of Huckleberry Finn, by Mark Twain](http://www.gutenberg.org/cache/epub/32325/pg32325.txt). Replace input.txt with another file and execute.
+With redis and our 3 workers still running, we can still submit more _input.txt_ files for processing. Back in a terminal with the _dfi_ virtualenv activated, we specify the REDIS_HOST environment variable to submit jobs to the containerized redis. A sample run follows for the file [Project Gutenberg's The Adventures of Huckleberry Finn, by Mark Twain](http://www.gutenberg.org/cache/epub/32325/pg32325.txt). Replace input.txt with another file and execute.
 
 ```
 (dfi) $ REDIS_HOST=192.168.99.100 python dfi/dfi.py
