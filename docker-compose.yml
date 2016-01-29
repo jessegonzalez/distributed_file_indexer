@@ -1,0 +1,22 @@
+redis:
+  expose:
+    - "6379"
+  image: redis
+  log_driver: none
+  ports:
+    - "6379:6379"
+rqworker:
+  build: .
+  command: /app/bin/rqworker --url tcp://redis:6379
+  environment:
+    PYTHONPATH: /app/dfi
+  links:
+    - redis
+  log_driver: none
+rq_coordinator:
+  build: .
+  environment:
+    REDIS_HOST: redis
+  command: /app/bin/python /app/dfi/dfi.py
+  links:
+    - redis
