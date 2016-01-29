@@ -37,9 +37,10 @@ $ pyenv virtualenv 2.7.6 dfi
 $ pyenv activate dfi
 ```
 
-Next run python setup.py install:
+Next run python setup.py test and install:
 
 ```
+(dfi) $ python setup.py test
 (dfi) $ python setup.py install
 ```
 
@@ -151,7 +152,7 @@ dfi_rqworker_1 exited with code 0
 dfi_redis_1 exited with code 0
 ```
 
-We also have the option to scale the number of containers to run. In our scenario we will run 1 redis container, 1 coordinator container, and 3 rqworker containers. We are exposing the Redis port 6379, so we need to make sure it is not running locally.
+We also have the option to scale the number of containers to run. In our scenario we will run 1 redis container, 1 coordinator container, and 3 rqworker containers. We are exposing the Redis port 6379, so we need to make sure it is not running locally. This will run the containers detached from the console.
 
 ```
 $ docker-compose scale redis=1 rqworker=3 rq_coordinator=1
@@ -174,7 +175,7 @@ c5adaf34c636        dfi_rqworker         "/app/bin/rqworker --"   3 minutes ago 
 1f6677883e5f        redis                "/entrypoint.sh redis"   3 minutes ago       Up 3 minutes               0.0.0.0:6379->6379/tcp   dfi_redis_1
 ```
 
-We see the docker container named dfi_rq_coordinator_1 has exiter, so we  view that containers logs with _docker logs_:
+We see the docker container named dfi_rq_coordinator_1 has exited, so we  view that containers logs with _docker logs_:
 
 ```
 $ docker logs dfi_rq_coordinator_1
